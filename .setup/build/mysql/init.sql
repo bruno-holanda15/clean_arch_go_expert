@@ -1,6 +1,6 @@
 CREATE TABLE `orders` (
     `id` VARCHAR(255) NOT NULL,
-    `price` INT NOT NULL,
-    `tax` INT NOT NULL,
-    `final_price` INT NOT NULL
+    `price` FLOAT NOT NULL,
+    `tax` FLOAT NOT NULL,
+    `final_price` FLOAT NOT NULL
 );

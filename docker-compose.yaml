@@ -20,12 +20,12 @@ services:
       - rabbitmq
 
   mysql:
-    image: 'mysql/mysql-server:8.0'
+    image: 'mysql:8.0'
     container_name: mysql
     restart: always
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
-      MYSQL_DATABASE: goexpert_desafio
+      MYSQL_DATABASE: goexpert
       MYSQL_ROOT_PASSWORD: root
       MYSQL_PASSWORD: root
     ports:
