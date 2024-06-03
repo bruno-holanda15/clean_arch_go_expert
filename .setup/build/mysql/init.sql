@@ -1,6 +1,6 @@
 CREATE TABLE orders (
     id VARCHAR(255),
-    price INTEGER,
-    tax INTEGER,
-    final_price INTEGER
+    price FLOAT,
+    tax FLOAT,
+    final_price FLOAT
 );
