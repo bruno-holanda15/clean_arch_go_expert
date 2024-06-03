@@ -11,4 +11,4 @@ RUN apt-get update && \
   go install github.com/githubnemo/CompileDaemon@latest && \
   go mod download
 
-ENTRYPOINT ["CompileDaemon", "-directory=./", "-build=go build -o clean_arch /go/src/cmd/ordersystem/main.go /go/src/cmd/ordersystem/wire_gen.go", "-command=./clean_arch"]
+ENTRYPOINT ["CompileDaemon", "-directory=./", "-build=go build -o clean_arch /go/src/cmd/main.go /go/src/cmd/wire_gen.go", "-command=./clean_arch"]
