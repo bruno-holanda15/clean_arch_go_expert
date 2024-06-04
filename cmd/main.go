@@ -42,11 +42,17 @@ func main() {
 		RabbitMQChannel: rabbitMQChannel,
 	})
 
+	eventDispatcher.Register("OrdersListed", &handler.OrdersListedHandler{
+		RabbitMQChannel: rabbitMQChannel,
+	})
+
 	createOrderUseCase := NewCreateOrderUseCase(db, eventDispatcher)
 
 	webserver := webserver.NewWebServer(configs.WebServerPort)
+
 	webOrderHandler := NewWebOrderHandler(db, eventDispatcher)
 	webserver.AddHandler("/order", webOrderHandler.Create)
+	webserver.AddHandler("/listAll", webOrderHandler.ListOrders)
 	fmt.Println("Starting web server on port", configs.WebServerPort)
 	go webserver.Start()
 
@@ -73,7 +79,8 @@ func main() {
 }
 
 func getRabbitMQChannel() *amqp.Channel {
-	conn, err := amqp.Dial("amqp://guest:guest@localhost:5672/")
+	configs, _ := configs.LoadConfig(".")
+	conn, err := amqp.Dial(fmt.Sprintf("amqp://guest:guest@%s:5672/", configs.RabbitHost))
 	if err != nil {
 		panic(err)
 	}
