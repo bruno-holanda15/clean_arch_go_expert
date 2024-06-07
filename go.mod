@@ -1,4 +1,4 @@
-module github.com/devfullcycle/20-CleanArch
+module clean_arch_desafio
 
 go 1.19
 

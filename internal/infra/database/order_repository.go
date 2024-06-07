@@ -3,7 +3,7 @@ package database
 import (
 	"database/sql"
 
-	"github.com/devfullcycle/20-CleanArch/internal/entity"
+	"clean_arch_desafio/internal/entity"
 )
 
 type OrderRepository struct {
@@ -32,7 +32,7 @@ func (r *OrderRepository) ListOrders() ([]entity.Order, error) {
 		return nil, err
 	}
 	defer rows.Close()
-	
+
 	var orders []entity.Order
 	for rows.Next() {
 		var id string

@@ -1,9 +1,9 @@
 package usecase
 
 import (
-	"github.com/devfullcycle/20-CleanArch/internal/entity"
-	"github.com/devfullcycle/20-CleanArch/internal/event"
-	"github.com/devfullcycle/20-CleanArch/pkg/events"
+	"clean_arch_desafio/internal/entity"
+	"clean_arch_desafio/internal/event"
+	"clean_arch_desafio/pkg/events"
 )
 
 type CreateOrderUseCase struct {

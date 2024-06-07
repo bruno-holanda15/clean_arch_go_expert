@@ -3,20 +3,20 @@ package service
 import (
 	"context"
 
-	"github.com/devfullcycle/20-CleanArch/internal/infra/grpc/pb"
-	"github.com/devfullcycle/20-CleanArch/internal/usecase"
+	"clean_arch_desafio/internal/infra/grpc/pb"
+	"clean_arch_desafio/internal/usecase"
 )
 
 type OrderService struct {
 	pb.UnimplementedOrderServiceServer
 	CreateOrderUseCase usecase.CreateOrderUseCase
-	ListOrdersUseCase usecase.ListOrdersUseCase
+	ListOrdersUseCase  usecase.ListOrdersUseCase
 }
 
 func NewOrderService(createOrderUseCase usecase.CreateOrderUseCase, listOrderUseCase usecase.ListOrdersUseCase) *OrderService {
 	return &OrderService{
 		CreateOrderUseCase: createOrderUseCase,
-		ListOrdersUseCase: listOrderUseCase,
+		ListOrdersUseCase:  listOrderUseCase,
 	}
 }
 
@@ -38,7 +38,7 @@ func (s *OrderService) CreateOrder(ctx context.Context, in *pb.CreateOrderReques
 	}, nil
 }
 
-// OrderList contem um slice de Order 
+// OrderList contem um slice de Order
 
 func (s *OrderService) ListOrders(ctx context.Context, in *pb.Blank) (*pb.OrdersList, error) {
 	output, err := s.ListOrdersUseCase.Execute()
@@ -50,12 +50,12 @@ func (s *OrderService) ListOrders(ctx context.Context, in *pb.Blank) (*pb.Orders
 
 	for _, order := range output {
 		orders = append(orders, &pb.Order{
-			Id: order.ID,
-			Price: float32(order.Price),
-			Tax: float32(order.Tax),
+			Id:         order.ID,
+			Price:      float32(order.Price),
+			Tax:        float32(order.Tax),
 			FinalPrice: float32(order.FinalPrice),
 		})
 	}
 
 	return &pb.OrdersList{Orders: orders}, nil
-} 
+}

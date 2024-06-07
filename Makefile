@@ -9,7 +9,7 @@ endif
 
 up:
 	$(COMMAND_DOCKER) up -d
-	@echo "Container $(CONTAINER_NAME) está iniciando..." && sleep 30;
+	@echo "Container $(CONTAINER_NAME) está iniciando..." && sleep 15;
 
 down:
 	$(COMMAND_DOCKER) down

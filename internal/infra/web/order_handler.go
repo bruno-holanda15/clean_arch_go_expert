@@ -4,14 +4,14 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/devfullcycle/20-CleanArch/internal/entity"
-	"github.com/devfullcycle/20-CleanArch/internal/usecase"
-	"github.com/devfullcycle/20-CleanArch/pkg/events"
+	"clean_arch_desafio/internal/entity"
+	"clean_arch_desafio/internal/usecase"
+	"clean_arch_desafio/pkg/events"
 )
 
 type WebOrderHandler struct {
-	EventDispatcher   events.EventDispatcherInterface
-	OrderRepository   entity.OrderRepositoryInterface
+	EventDispatcher events.EventDispatcherInterface
+	OrderRepository entity.OrderRepositoryInterface
 }
 
 func NewWebOrderHandler(
@@ -19,8 +19,8 @@ func NewWebOrderHandler(
 	OrderRepository entity.OrderRepositoryInterface,
 ) *WebOrderHandler {
 	return &WebOrderHandler{
-		EventDispatcher:   EventDispatcher,
-		OrderRepository:   OrderRepository,
+		EventDispatcher: EventDispatcher,
+		OrderRepository: OrderRepository,
 	}
 }
 

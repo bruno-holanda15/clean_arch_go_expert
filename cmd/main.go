@@ -8,14 +8,15 @@ import (
 
 	graphql_handler "github.com/99designs/gqlgen/graphql/handler"
 
+	"clean_arch_desafio/configs"
+	"clean_arch_desafio/internal/event/handler"
+	"clean_arch_desafio/internal/infra/graph"
+	"clean_arch_desafio/internal/infra/grpc/pb"
+	"clean_arch_desafio/internal/infra/grpc/service"
+	"clean_arch_desafio/internal/infra/web/webserver"
+	"clean_arch_desafio/pkg/events"
+
 	"github.com/99designs/gqlgen/graphql/playground"
-	"github.com/devfullcycle/20-CleanArch/configs"
-	"github.com/devfullcycle/20-CleanArch/internal/event/handler"
-	"github.com/devfullcycle/20-CleanArch/internal/infra/graph"
-	"github.com/devfullcycle/20-CleanArch/internal/infra/grpc/pb"
-	"github.com/devfullcycle/20-CleanArch/internal/infra/grpc/service"
-	"github.com/devfullcycle/20-CleanArch/internal/infra/web/webserver"
-	"github.com/devfullcycle/20-CleanArch/pkg/events"
 	"github.com/streadway/amqp"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
@@ -72,7 +73,7 @@ func main() {
 
 	srv := graphql_handler.NewDefaultServer(graph.NewExecutableSchema(graph.Config{Resolvers: &graph.Resolver{
 		CreateOrderUseCase: *createOrderUseCase,
-		ListOrderUseCase: *listOrderUseCase,
+		ListOrderUseCase:   *listOrderUseCase,
 	}}))
 	http.Handle("/", playground.Handler("GraphQL playground", "/query"))
 	http.Handle("/query", srv)
